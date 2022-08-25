@@ -1,0 +1,86 @@
+import json
+import boto3
+import csv
+
+
+s3 = boto3.resource('s3')
+s3client = boto3.client('s3')
+
+def lambda_handler(event, context):
+    
+    # print('check event:', json.dumps(event))
+    # print('check queryStringParameters:', json.dumps(event['queryStringParameters']))
+    
+    
+    #Connecting s3 bucket
+    
+    bucket = 'churn-results'
+    csv_file = 'Churn_unpredicted.csv'
+    
+    content_object = s3client.get_object(Bucket=bucket, Key=csv_file)  #a dictionary
+    
+    
+    file_reader = content_object['Body'].read().decode("utf-8").splitlines()
+  
+    
+    
+    # print(type(content_object))
+    
+    # print(content_object)
+    
+    # print(type(file_reader))
+    
+    # print(file_reader)
+  
+    
+    csv_rows = csv.DictReader(file_reader)
+    
+
+    
+    customerID= event['queryStringParameters']['customerID']
+    
+    # customerID= event['customerID']
+    
+    # for row in csv_rows:
+    #     print (row)
+    
+    for row in csv_rows:
+        if row['customerID']!=customerID:
+            churn='not found'
+        elif row['customerID']==customerID:
+            churn=row['Predicted Churn']
+            break
+        
+        
+        
+        
+
+    
+    
+    transactionResponse={}
+    transactionResponse['customerID']=customerID
+    transactionResponse['churn']=churn
+    transactionResponse['message']=' Thank you AI squared! #Interns 2022'
+    
+    
+    
+    
+    
+    
+    
+    return {
+        'statusCode': 200,
+      
+        'body': json.dumps(transactionResponse)
+    }
+
+
+
+
+
+
+
+
+
+
+
