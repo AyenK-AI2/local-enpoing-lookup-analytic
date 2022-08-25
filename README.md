@@ -19,3 +19,6 @@ Local endpoint after running the local server is : http://127.0.0.1:8080/get-cus
 
 
 To view Model results in a demo webpage, hit the url : http://127.0.0.1:8080/view  and run the AI squared model on the page  via the extension
+
+Upload churn_predictions.air into the ai squared extension to begin using the model. 
+Alternatively, recreate the .air file uisng the compile_churn air.ipynb file
