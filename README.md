@@ -9,3 +9,5 @@
 
 To Deploy using Lambda, download the Lambda Lookup package 
 
+bugid: change directory name from tempelates to templates
+
