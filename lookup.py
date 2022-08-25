@@ -11,7 +11,6 @@ def search_table(queried_customer):
     # queried_customer="7590-VHVEG"
     # queried_customer="3668-QPYBK"
     
-
     
     #table_selection is a data frame object, kind of like a table; in this case it is a table like so 
     #  customerID Predicted Churn
@@ -22,7 +21,6 @@ def search_table(queried_customer):
     
     
    
-    loolookup.liLlookup.List_customers()
     
     # table_selection.to_json method converts the data frame object to a string object 
     #selection is now a string object 
@@ -34,9 +32,6 @@ def search_table(queried_customer):
     
     selection = json.loads(selection)
 
-    
-    
-    
     #Finally, picking a single item from the selection list , you end up with a single dictionary item 
     selection_item = selection[0]
     #somehow it seems the ai squared thing doesnt like the selection - it gives index error: list index out of 
@@ -44,10 +39,8 @@ def search_table(queried_customer):
     # selection=json.loads(selection_item)
     # print(selection_item)
     
-
     #returning the selection back to json object
-
-    loolookup.liLlookup.List_customers()    # selection_item=json.dumps(selection_item)
+    # selection_item=json.dumps(selection_item)
 
     print("item returned from lookup",selection_item)
 
@@ -71,8 +64,7 @@ def List_customers():
 
 
     cols= ['customerID', 'Predicted Churn']
-
-    loolookup.liLlookup.List_customers()    
+    
     #selecting all rows and the two colummns
     table_Allselection = csv.loc[:, cols]
 
@@ -86,20 +78,35 @@ def List_customers():
     # print("json.loads: ",type(selectionAll))
 
     #selcting 3 items from the entire selection
-    selection_items=selectionAll[1:3]
+    selection_items=selectionAll[1:5]
     # print("selection items: ",type(selection_items))
     # print(selection_items)
 
-  
-    #converting back to json object
-    selection_items=json.dumps(selection_items)
-    print("jsondumps selection_items",type(selection_items))
+   
+
+    # customer_list = [customer['customerID'] for customer in selection_items]
+    # # print(type(customer_list))
+
+    
+
+    # for customer in customer_list: 
+    #     return (customer)
+       
 
 
+    # #converting back to json object
+    # selection_items=json.dumps(selection_items)
+    # # print("jsondumps selection_items",type(selection_items))
 
-    loolookup.liLlookup.List_customers()    print('Items returned from list customers',selection_items)
+
+    # print('Items returned from list customers',selection_items)
     
     return selection_items
 
+
+
+
+    
+print(List_customers())
 
 
